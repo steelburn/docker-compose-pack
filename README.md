@@ -8,6 +8,8 @@ Files are structured in directories per purpose set as follows:
 |--------------|----------|
 | ntfy          | ntfy compose file, Dockerfile, and configuration file  |
 | automatisch  | Dockerfile and configuration file          |
+| gitlab        | Dockerfile and configuration file for GitLab, with gitlab-runner and kroki          |
+| nginx-proxy-manager | Dockerfile and configuration file for Nginx Proxy Manager          |
 
 
 | Author       | Version  | Description | Date         |
