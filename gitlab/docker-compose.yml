@@ -1,0 +1,70 @@
+version: '3.8'
+# Gitlab Docker Compose
+# Replace the following with your own Gitlab URL:
+# external_url 'https://gitlab.com'
+
+services:
+  web:
+    image: gitlab/gitlab-ce:latest
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.com'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - ./gitlab/config:/etc/gitlab
+      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/data:/var/opt/gitlab
+    shm_size: 1g
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./gitlab/runner:/etc/gitlab-runner
+    command:
+      [
+        "register",
+        "--url",
+        "http://192.168.88.25",
+        "--token",
+        "glrt-2BK3kGR16DfUKerqTmJy"
+      ]
+  # We run the registry as remote proxy
+  registry:
+    image: registry:latest
+    restart: always
+    ports:
+      - '5000:5000'
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+  # Kroki - To render AsciiDoc, Markdown, reStructuredText, and Textile documents using Kroki. Check out https://kroki.io for more. 
+  kroki:
+    image: yuzutech/kroki
+    restart: always
+    ports:
+      - '8000:8000'
+    environment:
+      - KROKI_BLOCKDIAG_HOST=kroki-blockdiag
+      - KROKI_BPMN_HOST=kroki-bpmn
+      - KROKI_EXCALIDRAW_HOST=kroki-excalidraw
+      - KROKI_MERMAID_HOST=kroki-mermaid
+      - KROKI_WIREVIZ_HOST=kroki-wireviz
+  kroki-blockdiag:
+    image: yuzutech/kroki-blockdiag
+    restart: always
+  kroki-bpmn:
+    image: yuzutech/kroki-bpmn
+    restart: always
+  kroki-excalidraw:
+    image: yuzutech/kroki-excalidraw
+    restart: always
+  kroki-mermaid:
+    image: yuzutech/kroki-mermaid
+    restart: always
+  kroki-wireviz:
+    image: yuzutech/kroki-wireviz
+    restart: always

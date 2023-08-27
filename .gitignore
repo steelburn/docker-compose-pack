@@ -1,0 +1,6 @@
+gitlab/gitlab/config/*
+gitlab/gitlab/data/*
+gitlab/gitlab/logs/*
+gitlab/gitlab/runner/*
+nginx-proxy-manager/data/*
+nginx-proxy-manager/letsencrypt/*

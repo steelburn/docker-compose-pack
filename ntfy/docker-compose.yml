@@ -1,0 +1,22 @@
+version: '2.3'
+
+services:
+  ntfy:
+    image: ntfy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - "serve"
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+    ports:
+      - "8083:80"
+    volumes:
+      - cache:/var/cache/ntfy
+      - etc:/etc/ntfy
+    restart: unless-stopped
+
+volumes:
+  cache:
+  etc:
