@@ -17,4 +17,5 @@ networks:
     external: true
     name: default_net
 
-# default_net needs to be created separately
+# default_net needs to be created separately, before running this compose file.
+# Use: docker network create default_net

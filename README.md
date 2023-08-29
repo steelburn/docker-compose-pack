@@ -10,6 +10,7 @@ Files are structured in directories per purpose set as follows:
 | automatisch  | Dockerfile and configuration file          |
 | gitlab        | Dockerfile and configuration file for GitLab, with gitlab-runner and kroki          |
 | nginx-proxy-manager | Dockerfile and configuration file for Nginx Proxy Manager          |
+| mitmproxy     | Dockerfile and configuration file for mitmproxy          |
 
 
 | Author       | Version  | Description | Date         |
