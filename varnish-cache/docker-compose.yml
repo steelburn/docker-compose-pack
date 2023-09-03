@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  varnish:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-varnish
+    image: varnish
+    container_name: varnish
+    volumes:
+      - ./varnish.vcl:/etc/varnish/default.vcl
+    ports:
+      - 5080:80
+    restart: always
