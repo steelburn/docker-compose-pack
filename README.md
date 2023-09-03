@@ -11,6 +11,7 @@ Files are structured in directories per purpose set as follows:
 | gitlab        | Dockerfile and configuration file for GitLab, with gitlab-runner and kroki          |
 | nginx-proxy-manager | Dockerfile and configuration file for Nginx Proxy Manager          |
 | mitmproxy     | Dockerfile and configuration file for mitmproxy          |
+| nginx-varnish-wordpress | Dockerfile and configuration file for Nginx, Varnish and Wordpress combo          |
 
 
 | Author       | Version  | Description | Date         |
