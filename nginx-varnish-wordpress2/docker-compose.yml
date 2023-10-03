@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wpuser
+      MYSQL_ROOT_PASSWORD: dbrootpassword
+
+  web:
+    build: ./wordpress
+    image: wordpress
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wpuser
+      WORDPRESS_DB_NAME: wpdb
+    depends_on:
+      - db
+
+  cache:
+    build:
+      context: ./varnish
+      dockerfile: ./Dockerfile-varnish
+    image: varnish
+    volumes:
+      - ./varnish/varnish.vcl:/etc/varnish/default.vcl
+    restart: always
+    depends_on:
+      - web
+
+  proxy:
+    image: jc21/nginx-proxy-manager:latest
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    volumes:
+      - proxy_data:/data
+      - proxy_letsencrypt:/etc/letsencrypt
+    depends_on:
+      - cache
+
+volumes:
+  wordpress:
+  proxy_data:
+  proxy_letsencrypt:
+  db:

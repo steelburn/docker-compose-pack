@@ -1,0 +1,20 @@
+# Docker compose for gitness
+#
+
+version: '3.8'
+
+services:
+  gitness:
+    image: harness/gitness
+    restart: always
+    # Don't declare ports if we're using nginx-proxy-manager
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/DATA/gitness:/data
+
+networks:
+  default:
+    external: true
+    name: default_net
