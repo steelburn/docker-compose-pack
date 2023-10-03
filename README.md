@@ -12,6 +12,7 @@ Files are structured in directories per purpose set as follows:
 | nginx-proxy-manager | Dockerfile and configuration file for Nginx Proxy Manager          |
 | mitmproxy     | Dockerfile and configuration file for mitmproxy          |
 | nginx-varnish-wordpress | Dockerfile and configuration file for Nginx, Varnish and Wordpress combo          |
+| gitness  | Docker compose configuration for gitness (alternative to Github & Gitlab)  |
 
 
 | Author       | Version  | Description | Date         |
