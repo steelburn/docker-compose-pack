@@ -13,6 +13,8 @@ Files are structured in directories per purpose set as follows:
 | mitmproxy     | Dockerfile and configuration file for mitmproxy          |
 | nginx-varnish-wordpress | Dockerfile and configuration file for Nginx, Varnish and Wordpress combo          |
 | gitness  | Docker compose configuration for gitness (alternative to Github & Gitlab)  |
+| sonatype | Docker compose configuration for Sonatype Nexus Repository OSS v3 |
+
 
 
 | Author       | Version  | Description | Date         |

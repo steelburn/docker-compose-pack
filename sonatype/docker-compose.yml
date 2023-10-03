@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  repo:
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - /opt/DATA/sonatype/nexus-data:/nexus-data
+
+networks:
+  default:
+    external: true
+    name: default_net
