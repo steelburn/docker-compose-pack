@@ -10,13 +10,18 @@ services:
       - "serve"
     environment:
       - TZ=Asia/Kuala_Lumpur
-    ports:
-      - "8083:80"
+    # ports:
+    #   - "8083:80"
     volumes:
-      - cache:/var/cache/ntfy
-      - etc:/etc/ntfy
+      - /opt/DATA/ntfy/cache:/var/cache/ntfy
+      - /opt/DATA/ntfy/etc:/etc/ntfy
     restart: unless-stopped
 
-volumes:
-  cache:
-  etc:
+# volumes:
+#   cache:
+#   etc:
+
+networks:
+  default:
+    external: true
+    name: default_net

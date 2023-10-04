@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  heimdall:
+  image: lscr.io/linuxserver/heimdall:latest
+  container_name: heimdall
+  restart: unless-stopped
+  environment:
+    - TZ=Asia/Kuala_Lumpur
+    - PUID=1000
+    - GUID=1000
+# Don't declare ports if we're using nginx-proxy-manager
+#  ports:
+#    - "80:80"
+#    - "443:443"
+  volumes:
+    - /opt/DATA/heimdall:/heimdall
+
+networks:
+  default:
+    external: true
+    name: default_net

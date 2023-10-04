@@ -8,12 +8,17 @@ services:
     image: harness/gitness
     restart: always
     # Don't declare ports if we're using nginx-proxy-manager
-    ports:
-      - "3000:3000"
+#    ports:
+#      - "3000:3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/DATA/gitness:/data
-
+    environment:
+#      GITNESS_NESTED_SPACES_ENABLED: true
+      GITNESS_URL_BASE: https://git.zen.com.my:443
+      GITNESS_CI_PARALLEL_WORKERS: 4
+#      GITNESS_HTTP_PORT: 443
+#      GITNESS_HTTP_PROTO: https
 networks:
   default:
     external: true

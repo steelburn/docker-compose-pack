@@ -15,16 +15,16 @@ services:
       - '443:443'
       - '22:22'
     volumes:
-      - ./gitlab/config:/etc/gitlab
-      - ./gitlab/logs:/var/log/gitlab
-      - ./gitlab/data:/var/opt/gitlab
+      - /opt/DATA/gitlab/config:/etc/gitlab
+      - /opt/DATA/gitlab/logs:/var/log/gitlab
+      - /opt/DATA/gitlab/data:/var/opt/gitlab
     shm_size: 1g
   gitlab-runner:
     image: gitlab/gitlab-runner:latest
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./gitlab/runner:/etc/gitlab-runner
+      - /opt/DATA/gitlab/runner:/etc/gitlab-runner
     command:
       [
         "register",

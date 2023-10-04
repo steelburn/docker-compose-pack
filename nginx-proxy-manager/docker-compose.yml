@@ -10,8 +10,8 @@ services:
       - '443:443'
       - '81:81'
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - /opt/DATA/nginx-proxy-manager/data:/data
+      - /opt/DATA/letsencrypt/etc:/etc/letsencrypt
 networks:
   default:
     external: true

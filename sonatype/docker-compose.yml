@@ -4,8 +4,12 @@ services:
   repo:
     image: sonatype/nexus3
     restart: always
+# The volume below needs to be created first & set the right permission:
+# mkdir -p /opt/DATA/sonatype/nexus-data && chown -R 200 /opt/DATA/sonatype/nexus-data
     volumes:
       - /opt/DATA/sonatype/nexus-data:/nexus-data
+#    ports:
+#      - "8081:8081"
 
 networks:
   default:

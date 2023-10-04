@@ -5,7 +5,7 @@ services:
     image: mysql
     restart: always
     volumes:
-      - db:/var/lib/mysql
+      - /opt/DATA/mysql/db:/var/lib/mysql
     environment:
       MYSQL_DATABASE: wpdb
       MYSQL_USER: wpuser
@@ -17,7 +17,7 @@ services:
     image: wordpress
     restart: always
     volumes:
-      - wordpress:/var/www/html
+      - /opt/DATA/wordpress/html:/var/www/html
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wpuser
@@ -32,7 +32,7 @@ services:
       dockerfile: ./Dockerfile-varnish
     image: varnish
     volumes:
-      - ./varnish/varnish.vcl:/etc/varnish/default.vcl
+      - /opt/DATA/varnish/etc/varnish.vcl:/etc/varnish/default.vcl
     restart: always
     depends_on:
       - web
@@ -45,13 +45,12 @@ services:
       - '443:443'
       - '81:81'
     volumes:
-      - proxy_data:/data
-      - proxy_letsencrypt:/etc/letsencrypt
+      - /opt/DATA/nginx-proxy-manager/data:/data
+      - /opt/DATA/letsencrypt/etc:/etc/letsencrypt
     depends_on:
       - cache
 
-volumes:
-  wordpress:
-  proxy_data:
-  proxy_letsencrypt:
-  db:
+networks:
+  default:
+    external: true
+    name: default_net
